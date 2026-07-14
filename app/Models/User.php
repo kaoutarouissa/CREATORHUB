@@ -46,4 +46,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function likedRealisations()
+{
+    return $this->belongsToMany(Realisation::class, 'likes');
+}
+
+public function savedRealisations()
+{
+    return $this->belongsToMany(Realisation::class, 'saves');
+}
 }
