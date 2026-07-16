@@ -16,9 +16,9 @@ return new class extends Migration
             //   $table->string('name');
             // $table->string('email')->unique();
             // $table->string('password');
-            $table->string('avatar')->nullable();
+            // $table->string('avatar')->nullable();
             // $table->text('bio')->nullable();
-            $table->decimal('tarifs', 10, 2)->nullable();
+            // $table->decimal('tarifs', 10, 2)->nullable();
         });
     }
 
