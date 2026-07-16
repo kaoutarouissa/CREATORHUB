@@ -29,8 +29,8 @@ class LikeController extends Controller
         $user->likedRealisations()->syncWithoutDetaching([$realisation->id]);
 
         return response()->json([
-            'message' => 'Like ajoute avec succes',
-            "data"=>$user
+            'message' => "User " . $user->name . " a liker la realisation : " . $realisation->title
+            // "data"=>$user
         ], 201);
     }
 
@@ -63,7 +63,7 @@ class LikeController extends Controller
         $user->likedRealisations()->detach($realisation->id);
 
         return response()->json([
-            'message' => 'Like supprime avec succes'
+            'message' => "User " . $user->name . " a supprimer le like de la realisation : " . $realisation->title
         ], 200);
     }
 }

@@ -26,8 +26,8 @@ class SaveController extends Controller
         $user->savedRealisations()->syncWithoutDetaching([$realisation->id]);
 
         return response()->json([
-            'message' => 'Realisation sauvegardee.',
-            'data'=>$user
+            'message' => "User ". $user->name . " a sauvgarder la realisation : ". $realisation->title
+            // 'data'=>$user
         ], 201);
     }
     /**
@@ -60,7 +60,7 @@ class SaveController extends Controller
         $user->savedRealisations()->detach($realisation->id);
 
         return response()->json([
-            'message' => 'Réalisation retirée des sauvegardes.'
+    'message' => "User " . $user->name . " a retire la realisation " . $realisation->title . " des sauvegardes."
         ]);
     }
 }

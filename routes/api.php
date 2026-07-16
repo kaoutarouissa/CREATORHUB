@@ -12,3 +12,4 @@ Route::delete('/realisations/{realisation}/like', [LikeController::class, 'destr
 Route::post('/realisations/{realisation}/save', [SaveController::class, 'store']);
     // ->middleware('auth')
     // ->name('realisations.save');
+route ::delete('realisations/{realisation}/save',[SaveController::class,'destroy']);
