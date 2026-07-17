@@ -19,6 +19,11 @@ if ($request->filled('name')) {
         $q->where('name', $request->name);
     });
 }
+if ($request->filled('tarifs')) {
+    $query->whereHas('user', function ($q) use ($request) {
+        $q->where('tarifs', $request->tarifs);
+    });
+}
 
 $realisations = $query->get();
 
