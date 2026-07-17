@@ -1,0 +1,37 @@
+services:
+  app:
+    build: .
+    container_name: creatorhub_app
+    command: php artisan serve --host=0.0.0.0 --port=8000
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - .:/var/www
+    depends_on:
+      - mysql
+    networks:
+      - creatorhub_network
+
+  mysql:
+    image: mysql:8.0
+    container_name: creatorhub_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: creatorhub
+      MYSQL_USER: creatorhub
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - creatorhub_network
+
+volumes:
+  mysql_data:
+
+networks:
+  creatorhub_network:
