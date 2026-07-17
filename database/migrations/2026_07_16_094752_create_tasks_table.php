@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('realisations', function (Blueprint $table) {
-           $table->string('title');
-        $table->text('description')->nullable();
-        $table->string('media');
-        $table->string('tags');
-        $table->id();
+        Schema::create('tasks', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->string('livrable_url')->nullable();
+            $table->enum('status', ['todo', 'in_progress', 'done'])->default('todo');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('realisations');
+        Schema::dropIfExists('tasks');
     }
 };
