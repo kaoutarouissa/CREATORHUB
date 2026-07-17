@@ -11,7 +11,6 @@ class CandidatureController extends Controller
     public function postuler(Request $request)
     {
         try {
-            // 1. Validation: 7yedna 'exists' مؤقتا bach t9dr t'insérer bla machakil ila kano tables khawyin
             $request->validate([
                 'offer_id' => 'required',
                 'user_id' => 'required',
@@ -25,7 +24,7 @@ class CandidatureController extends Controller
             if ($dejaPostule) {
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'Rak déjà dfa3ti l had l-offre.'
+                    'message' => 'Vous avez déjà postulé à cette offre.'
                 ], 400);
             }
 
