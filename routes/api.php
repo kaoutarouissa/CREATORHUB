@@ -5,6 +5,13 @@ use App\Http\Controllers\Api\LikeController;
 use App\Http\Controllers\Api\OfferController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\LikeController;
+use App\Http\Controllers\API\CandidatureController;
+use App\Http\Controllers\API\OfferController;
+
+Route::post('/realisations/{realisation}/like', [LikeController::class, 'store']);
+Route::delete('/realisations/{realisation}/like', [LikeController::class, 'destroy']);
+Route::post('/candidatures', [CandidatureController::class, 'postuler']);
 
 // الـ Routes المفتوحة للجميع
 Route::post('/register', [AuthController::class, 'register']);
