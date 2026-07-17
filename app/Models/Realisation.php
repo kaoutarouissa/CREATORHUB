@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+// use App\Models\skills;
 class Realisation extends Model
 {
     //
@@ -21,5 +21,15 @@ public function likedByUsers()
 public function savedByUsers()
 {
     return $this->belongsToMany(User::class, 'saves');
+}
+
+public function skills()
+{
+    return $this->belongsToMany(
+        Skill::class,
+        'realisation_skill',
+        'realisation_id',
+        'skill_id'
+    );
 }
 }
