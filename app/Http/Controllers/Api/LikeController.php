@@ -21,10 +21,15 @@ class LikeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request,Realisation $realisation)
+    public function store(Request $request, Realisation $realisation)
     {
-        //
-         $user =User::find(12);
+        $user = $request->user();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'Unauthenticated.'
+            ], 401);
+        }
 
         $user->likedRealisations()->syncWithoutDetaching([$realisation->id]);
 
@@ -53,11 +58,15 @@ class LikeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(likes $likes ,Realisation $realisation)
+    public function destroy(Request $request, likes $likes, Realisation $realisation)
     {
-        //
-        //  $user = auth()->user();
-                 $user =User::find(12);
+        $user = $request->user();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'Unauthenticated.'
+            ], 401);
+        }
 
 
         $user->likedRealisations()->detach($realisation->id);

@@ -22,11 +22,18 @@ class SaveController extends Controller
 
     public function store(Realisation $realisation): JsonResponse
     {
-        $user = User::find(1);
+        $user = request()->user();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'Unauthenticated.'
+            ], 401);
+        }
+
         $user->savedRealisations()->syncWithoutDetaching([$realisation->id]);
 
         return response()->json([
-            'message' => "User ". $user->name . " a sauvgarder la realisation : ". $realisation->title
+            'message' => "User " . $user->name . " a sauvgarder la realisation : " . $realisation->title
             // 'data'=>$user
         ], 201);
     }
@@ -56,11 +63,18 @@ class SaveController extends Controller
      */
     public function destroy(Realisation $realisation): JsonResponse
     {
-        $user = User::find(1);
+        $user = request()->user();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'Unauthenticated.'
+            ], 401);
+        }
+
         $user->savedRealisations()->detach($realisation->id);
 
         return response()->json([
-    'message' => "User " . $user->name . " a retire la realisation " . $realisation->title . " des sauvegardes."
+            'message' => "User " . $user->name . " a retire la realisation " . $realisation->title . " des sauvegardes."
         ]);
     }
 }
