@@ -32,4 +32,8 @@ public function skills()
         'skill_id'
     );
 }
+public function user()
+{
+    return $this->belongsTo(User::class);
+}
 }
