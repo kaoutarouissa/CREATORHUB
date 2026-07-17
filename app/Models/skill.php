@@ -4,16 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class skill extends Model
+class Skill extends Model
 {
-    //
-public function realisations()
-{
-    return $this->belongsToMany(
-        Realisation::class,
-        'realisation_skill',
-        'skill_id',
-        'realisation_id'
-    );
-}
+    protected $fillable = ['name'];
+
+    // المهارة تقدر تكون فبزاف ديال الإنجازات - علاقة Many-to-Many
+    public function realisations()
+    {
+        return $this->belongsToMany(Realisation::class);
+    }
 }
