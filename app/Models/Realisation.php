@@ -13,4 +13,13 @@ class Realisation extends Model
     'media',
     'tags'
 ];
+public function likedByUsers()
+{
+    return $this->belongsToMany(User::class, 'likes');
+}
+
+public function savedByUsers()
+{
+    return $this->belongsToMany(User::class, 'saves');
+}
 }

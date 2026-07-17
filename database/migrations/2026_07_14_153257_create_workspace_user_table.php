@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('realisations', function (Blueprint $table) {
-           $table->string('title');
-        $table->text('description')->nullable();
-        $table->string('media');
-        $table->string('tags');
-        $table->id();
+        Schema::create('workspace_user', function (Blueprint $table) {
+            // $table->id();
+             $table->foreignId('workspace_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->primary(['workspace_id', 'user_id']);
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('realisations');
+        Schema::dropIfExists('workspace_user');
     }
 };
