@@ -51,7 +51,7 @@ class RealisationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Realisation $realisation)
+    public function update(Request $request,Realisation  $realisation)
     {
 
 
