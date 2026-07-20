@@ -7,6 +7,7 @@ use App\Models\likes;
 use App\Models\Realisation;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class LikeController extends Controller
 {
@@ -23,14 +24,14 @@ class LikeController extends Controller
      */
     public function store(Request $request,Realisation $realisation)
     {
-        //
-         $user =User::find(12);
+        
+       
 
-        $user->likedRealisations()->syncWithoutDetaching([$realisation->id]);
+       Auth::user()->likedRealisations()->syncWithoutDetaching([$realisation->id]);
 
         return response()->json([
             'message' => 'Like ajoute avec succes',
-            "data"=>$user
+            "data"=>$realisation
         ], 201);
     }
 
@@ -57,10 +58,10 @@ class LikeController extends Controller
     {
         //
         //  $user = auth()->user();
-                 $user =User::find(12);
+               
 
 
-        $user->likedRealisations()->detach($realisation->id);
+       Auth::user()->likedRealisations()->detach($realisation->id);
 
         return response()->json([
             'message' => 'Like supprime avec succes'

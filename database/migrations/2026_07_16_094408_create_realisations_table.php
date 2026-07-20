@@ -13,11 +13,7 @@ return new class extends Migration
     {
         Schema::create('realisations', function (Blueprint $table) {
             $table->id();
-<<<<<<<< HEAD:database/migrations/2026_07_16_094408_create_realisations_table.php
             $table->string('title');
-========
-             $table->string('title');
->>>>>>>> origin/main:database/migrations/2026_07_14_152725_create_realisations_table.php
             $table->text('description');
             $table->string('media_url')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
